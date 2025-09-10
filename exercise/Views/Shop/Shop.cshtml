@@ -1,0 +1,19 @@
+﻿@{
+	ViewData["Title"] = "購物頁面";
+}
+
+@await Html.PartialAsync("_Tool",new List<exercise.Models.ToolButton>
+    {
+        new exercise.Models.ToolButton{ Controller = "Shop",Action= "Shop",Image = "home.png",Alt = "主頁"},
+        new exercise.Models.ToolButton{ Controller = "Shop",Action= "Shop",Image = "car.png",Alt = "購物車"},
+        new exercise.Models.ToolButton{ Controller = "Home",Action= "Index",Image = "exit.png",Alt = "登出"}
+    })
+
+<div style="margin-top:10vh;">
+    <!-- 推開工具列高度 -->
+    <div style="background-color:aqua; height:500px">測試</div>
+    <div style="background-color:red; height:500px">測試</div>
+    <div style="background-color:yellow; height:500px">測試</div>
+</div>
+
+

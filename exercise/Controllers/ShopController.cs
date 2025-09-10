@@ -1,23 +1,21 @@
-using System.Diagnostics;
-using exercise.Models;
+﻿using exercise.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace exercise.Controllers
 {
-    public class HomeController : Controller
+    public class ShopController:Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ShopController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ShopController(ILogger<ShopController> logger)
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult Shop()
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

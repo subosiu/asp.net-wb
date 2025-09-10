@@ -1,6 +1,19 @@
-﻿<div style="background:#08311B;color:white; height:10vh;font-size:50px;display:flex;justify-content:flex-end; align-items:center; padding:5px">
-    <form asp-controller="Home" asp-action="Index" method="get" style="margin:0;">
-        <input type="image" src="~/images/exit.png" alt="登出"
-               style="height:100px; width:100px; cursor:pointer; margin-right:10px; margin-top:30px; filter: invert(89%) sepia(26%) saturate(1110%) hue-rotate(177deg) brightness(100%) contrast(100%);"  />
-    </form>
+﻿@model IEnumerable<exercise.Models.ToolButton>
+
+<div style="background:#08311B;color:white; height:10vh;font-size:50px;
+            display:flex;justify-content:flex-end; align-items:center;
+            padding:5px; position:fixed; top:0;width:100%;z-index:1000;">
+	@foreach (var btn in Model)
+	{
+		var Style = btn.Alt == "登出" ? "transform: scaleX(-1);" : "";
+		<form asp-controller="@btn.Controller"
+			  asp-action="@btn.Action"
+			  method="get"
+			  style="margin:0;">
+			<input type="image" src="~/images/@btn.Image"
+				   alt="@btn.Alt"
+				   style="height:100px; width:100px; cursor:pointer;
+			              margin-right:10px; margin-top:30px;filter: invert(89%) sepia(26%) saturate(1110%)hue-rotate(177deg) brightness(100%) contrast(100%);@Style" />
+		</form>
+	}
 </div>
