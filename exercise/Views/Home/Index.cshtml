@@ -21,16 +21,22 @@
 				訪客
 			</div>
 		</div>
+		
 		<form style="padding:20px; display:flex; flex-direction:column; gap:15px; border:1px solid black; border-top-left-radius:0; border-top-right-radius:0; border-bottom-left-radius:12px; border-bottom-right-radius:12px; height:90%;"
-			  method="get" asp-controller="Shop" asp-action="Shop">
+			  method="post" asp-controller="Home" asp-action="Login">
 			<label style="font-size:25px">帳號:</label>
-			<input type="text" placeholder="請輸入帳號" style="padding:10px; border-radius:20px; border:1px solid #ccc; outline:none;">
+			<input type="text" name = "account" placeholder="請輸入帳號" style="padding:10px; border-radius:20px; border:1px solid #ccc; outline:none;">
 			<label style="font-size:25px">密碼:</label>
-			<input type="password" placeholder="請輸入密碼" style="padding:10px; border-radius:20px; border:1px solid #ccc; outline:none;">
+			<input type="password" name = "pw" placeholder="請輸入密碼" style="padding:10px; border-radius:20px; border:1px solid #ccc; outline:none;">
+			@if (ViewBag.Error != null)
+			{
+				<p style="color:red">@ViewBag.Error</p>
+			}
 			<button type="submit" style="padding:10px; background:#333; color:white; border:none; border-radius:20px; cursor:pointer; font-weight:bold; margin-top:30px;">
 				登入
 			</button>
 		</form>
+		
 	</div>
 </div>
 <div style="background:#08311b;height:10vh;"></div>
