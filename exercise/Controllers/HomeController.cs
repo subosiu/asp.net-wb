@@ -9,7 +9,6 @@ namespace exercise.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //private string connectionString = @"Server=C8659\SQLEXPRESS;Database=MyGo;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
         private readonly IConfiguration _configuration;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)

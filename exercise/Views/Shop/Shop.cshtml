@@ -1,6 +1,8 @@
 ﻿@{
 	ViewData["Title"] = "購物頁面";
 }
+@model List<exercise.Models.Product>
+@using System.Linq
 
 @await Html.PartialAsync("_Tool",new List<exercise.Models.ToolButton>
     {
@@ -9,11 +11,39 @@
         new exercise.Models.ToolButton{ Controller = "Home",Action= "Index",Image = "exit.png",Alt = "登出"}
     })
 
-<div style="margin-top:10vh;">
-    <!-- 推開工具列高度 -->
-    <div style="background-color:aqua; height:500px">測試</div>
-    <div style="background-color:red; height:500px">測試</div>
-    <div style="background-color:yellow; height:500px">測試</div>
+<div style="margin-top:10vh; background-color:#E6E6E6; height: 100vh;">
+    <div style="width:100%; display:flex; justify-content:center; margin-top:20px; height:10vh">
+        <form method="get" asp-controller="Shop" asp-action="Shop"
+              style="margin:20px 0; display:flex; width:60%; border-radius:20px; border:1px solid #ccc; overflow:hidden;">
+            <input type="text" name="keyword" placeholder="輸入商品名稱"
+                   style="padding:10px; flex:1; border:none; outline:none;"
+                   onkeydown="if(event.key === 'Enter'){this.form.submit();}">
+            <button type="submit"
+                    style="border:none; background:transparent; display:flex; align-items:center; justify-content:center; width:50px; cursor:pointer; padding:0; background-color:#A8B0C0">
+                <img src="~/images/icon/magnifier.png" style="width:50%; height:50%;">
+            </button>
+        </form>
+    </div>
+    <div>
+        @if (Model != null && Model.Any())
+        {
+            <div style="display:flex;flex-wrap:wrap;gap:20px;">
+                @foreach (var item in Model)
+                {
+                    <div style="border:1px solid #ccc; padding:10px; width:150px; text-align:center;">
+                        @* <img src="@item.Img" style="width:100%; height:auto;" /> *@
+                        <p>@item.pName</p>
+                        <p>@item.Selldata</p>
+                        <p>價格:@item.Price</p>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>沒有符合的商品</p>
+        }
+    </div>
 </div>
 
 
