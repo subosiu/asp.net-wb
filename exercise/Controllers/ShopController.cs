@@ -25,7 +25,7 @@ namespace exercise.Controllers
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM Product WHERE pName LIKE @keyword";
+                    string sql = "SELECT * FROM Product WHERE pName LIKE @keyword OR Seller Like @keyword";
                     using (SqlCommand cmd = new SqlCommand(sql,conn))
                     { 
                         cmd.Parameters.AddWithValue("@keyword", "%" + (keyword??"") + "%");
