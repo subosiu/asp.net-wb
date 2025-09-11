@@ -39,7 +39,8 @@ namespace exercise.Controllers
                                     pName = reader["pName"].ToString(),
                                     Price = Convert.ToInt32(reader["Price"]),
                                     Selldata = reader["selldata"].ToString(),
-                                    Img = reader["img"].ToString()
+                                    Img = reader["img"].ToString(),
+                                    Quantity = Convert.ToInt32(reader["Quantity"])
                                 });
                             }
                         }
