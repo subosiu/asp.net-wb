@@ -14,11 +14,11 @@
 	<div id="container" style="width:90%; max-width:400px; max-height:80vh; margin:130px auto 0 auto; background:#f4b64c; border-radius:15px; font-family:Arial, sans-serif; box-shadow:0 4px 10px rgba(0,0,0,0.3); margin-bottom:100px">
 
 		<div style="display:flex; height:10%;">
-			<div id="memberTab" style="flex:2; background:#ff9c2e; color:white; display:flex; justify-content:center; align-items:center; cursor:pointer; transition: all 0.3s;border:1px solid black;border-top-left-radius:12px ;font-size:30px">
-				會員
+			<div id="purchase" style="flex:2; background:#ff9c2e; color:white; display:flex; justify-content:center; align-items:center; cursor:pointer; transition: all 0.3s;border:1px solid black;border-top-left-radius:12px ;font-size:30px">
+				買家
 			</div>
-			<div id="guestTab" style="flex:1; background:#3b0f0f; color:white; display:flex; justify-content:center; align-items:center; cursor:pointer; transition: all 0.3s;border:1px solid black;border-top-right-radius:12px;font-size:20px">
-				訪客
+			<div id="Sell" style="flex:1; background:#3b0f0f; color:white; display:flex; justify-content:center; align-items:center; cursor:pointer; transition: all 0.3s;border:1px solid black;border-top-right-radius:12px;font-size:20px">
+				賣家
 			</div>
 		</div>
 		
@@ -28,6 +28,7 @@
 			<input type="text" name = "account" placeholder="請輸入帳號" style="padding:10px; border-radius:20px; border:1px solid #ccc; outline:none;">
 			<label style="font-size:25px">密碼:</label>
 			<input type="password" name = "pw" placeholder="請輸入密碼" style="padding:10px; border-radius:20px; border:1px solid #ccc; outline:none;">
+			<input type="hidden" id="identity" name="status" value="p"></input>
 			@if (ViewBag.Error != null)
 			{
 				<p style="color:red">@ViewBag.Error</p>
@@ -42,24 +43,26 @@
 <div style="background:#08311b;height:10vh;"></div>
 
 <script>
-	const memberTab = document.getElementById("memberTab");
-	const guestTab = document.getElementById("guestTab");
+	const purchase = document.getElementById("purchase");
+	const Sell = document.getElementById("Sell");
 
-	memberTab.addEventListener("click", () => {
-		memberTab.style.flex = "2";
-		guestTab.style.flex = "1";
-		memberTab.style.background = "#ff9c2e";
-		guestTab.style.background = "#3b0f0f";
-		memberTab.style.fontSize = '30px';
-		guestTab.style.fontSize = '20px';
+	purchase.addEventListener("click", () => {
+		identity.value = "p";
+		purchase.style.flex = "2";
+		Sell.style.flex = "1";
+		purchase.style.background = "#ff9c2e";
+		Sell.style.background = "#3b0f0f";
+		purchase.style.fontSize = '30px';
+		Sell.style.fontSize = '20px';
 	});
 
-	guestTab.addEventListener("click", () => {
-		guestTab.style.flex = "2";
-		memberTab.style.flex = "1";
-		guestTab.style.background = "#ff9c2e";
-		memberTab.style.background = "#3b0f0f";
-		memberTab.style.fontSize = '20px';
-		guestTab.style.fontSize = '30px';
+	Sell.addEventListener("click", () => {
+		identity.value = "s";
+		Sell.style.flex = "2";
+		purchase.style.flex = "1";
+		Sell.style.background = "#ff9c2e";
+		purchase.style.background = "#3b0f0f";
+		purchase.style.fontSize = '20px';
+		Sell.style.fontSize = '30px';
 	});
 </script>
