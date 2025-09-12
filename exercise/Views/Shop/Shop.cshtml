@@ -10,7 +10,6 @@
         new exercise.Models.ToolButton{ Controller = "Shop",Action= "Shop",Image = "car.png",Alt = "購物車"},
         new exercise.Models.ToolButton{ Controller = "Home",Action= "Index",Image = "exit.png",Alt = "登出"}
     })
-
 <div style="margin-top:10vh; background-color:#E6E6E6; height: 100vh;">
     <!--收尋框-->
     <div style="width:100%; display:flex;margin-top:20px; height:10vh;margin-left:40vh;margin-right:40vh;">
@@ -18,7 +17,8 @@
               style="margin:20px 0; display:flex; width:60%; border-radius:20px; border:1px solid #ccc; overflow:hidden;">
             <input type="text" name="keyword" placeholder="輸入商品名稱或賣家名稱"
                    style="padding:10px; flex:1; border:none; outline:none;"
-                   onkeydown="if(event.key === 'Enter'){this.form.submit();}">
+                   onkeydown="if(event.key === 'Enter'){this.form.submit();}"
+                   >
             <button type="submit"
                     style="border:none; background:transparent; display:flex; align-items:center; justify-content:center; width:50px; cursor:pointer; padding:0; background-color:#A8B0C0">
                 <img src="~/images/icon/magnifier.png" style="width:24px; height:24px;">
@@ -31,7 +31,9 @@
         {
             <div style="display:flex;flex-wrap:wrap;gap:20px;">
                 @foreach (var item in Model)
-                {
+                {   
+                    <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.pId" 
+                   style="text-decoration:none; color:inherit;">
                     <div style="border:1px solid #ccc; padding:10px; width:200px; text-align:center;background:#fff; border-radius:8px;">
                         <img src="@item.Img" style="width:100px; height:120px;object-fit:contain;" />
                         <p>@item.pName</p>
@@ -39,6 +41,7 @@
                         <p>價格:@item.Price</p>
                         <p>數量:@item.Quantity</p>
                     </div>
+                    </a>
                 }
             </div>
         }

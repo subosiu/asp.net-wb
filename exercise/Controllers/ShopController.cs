@@ -36,6 +36,7 @@ namespace exercise.Controllers
                             {
                                 products.Add(new Product
                                 {
+                                    pId = Convert.ToInt32(reader["pId"]),
                                     pName = reader["pName"].ToString(),
                                     Price = Convert.ToInt32(reader["Price"]),
                                     Seller = reader["seller"].ToString(),
@@ -55,6 +56,51 @@ namespace exercise.Controllers
             }
             return View(products);
         }
+        public IActionResult ProductDetail(int id)
+        {
+            string connectionString = _configuration.GetConnectionString("MyGoConnection");
+            Product product = null;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT * FROM Product WHERE pId = @pId"; 
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@pId", id);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                product = new Product
+                                {
+                                    pName = reader["pName"].ToString(),
+                                    Price = Convert.ToInt32(reader["Price"]),
+                                    Seller = reader["Seller"].ToString(),
+                                    Img = reader["img"].ToString(),
+                                    Quantity = Convert.ToInt32(reader["Quantity"]),
+                                    creTime = Convert.ToDateTime(reader["creTime"])
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "取得商品明細時發生錯誤");
+                ViewBag.Error = "系統錯誤：" + ex.Message;
+            }
+
+            if (product == null)
+                return NotFound(); // 找不到商品
+
+            return View(product); // 傳單筆商品給 View
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

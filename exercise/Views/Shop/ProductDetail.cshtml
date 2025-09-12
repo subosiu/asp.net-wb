@@ -1,0 +1,26 @@
+﻿@model exercise.Models.Product
+@{
+    ViewData["Title"] = "商品詳情";
+}
+
+@await Html.PartialAsync("_Tool", new List<exercise.Models.ToolButton>
+{
+    new exercise.Models.ToolButton { Controller = "Shop", Action = "Shop", Image = "home.png", Alt = "主頁" },
+    new exercise.Models.ToolButton { Controller = "Shop", Action = "Shop", Image = "car.png", Alt = "購物車" },
+    new exercise.Models.ToolButton { Controller = "Home", Action = "Index", Image = "exit.png", Alt = "登出" }
+})
+
+<div style="margin-top:10vh; display:flex; justify-content:center; background:#E6E6E6; min-height:90vh;">
+    <div style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.2); max-width:600px; width:90%;">
+        <img src="@Model.Img" style="width:100%; height:300px; object-fit:contain; border-radius:8px;" />
+        <h2 style="margin-top:15px;">@Model.pName</h2>
+        <p>賣家: @Model.Seller</p>
+        <p>上架日期: @Model.creTime.ToString("yyyy/MM/dd")</p>
+        <p>價格: @Model.Price</p>
+        <p>庫存: @Model.Quantity</p>
+        <button style="padding:10px 20px;background: linear-gradient(to right, #ED7E00, #FFA500);color:black;border:none;border-radius:8px;cursor:pointer;margin-top:15px;width:100%;display:flex;align-items:center;justify-content:flex-start;gap:10px;">
+            <img src="~/images/icon/car.png" style="width:35px; height:35px; margin-right:33%" />
+            <span style="font-weight:bold;">加入購物車</span>
+        </button>
+    </div>
+</div>
