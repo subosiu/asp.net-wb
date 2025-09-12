@@ -39,7 +39,7 @@ namespace exercise.Controllers
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT COUNT(*) FROM Member WHERE aId=@account AND pw=@pw AND status = @status";
+                    string sql = "SELECT COUNT(*) FROM Member WHERE uId=@account AND pw=@pw AND status = @status";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@account", account);

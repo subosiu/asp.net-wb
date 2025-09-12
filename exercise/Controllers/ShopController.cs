@@ -59,7 +59,7 @@ namespace exercise.Controllers
         public IActionResult ProductDetail(int id)
         {
             string connectionString = _configuration.GetConnectionString("MyGoConnection");
-            Product product = null;
+            Product? product = null;
 
             try
             {
@@ -95,9 +95,9 @@ namespace exercise.Controllers
             }
 
             if (product == null)
-                return NotFound(); // 找不到商品
+                return NotFound();
 
-            return View(product); // 傳單筆商品給 View
+            return View(product);
         }
 
 
